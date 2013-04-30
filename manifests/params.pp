@@ -84,6 +84,8 @@ class squid3::params {
   $port = '3128'
   $protocol = 'tcp'
 
+  $acl_safe_ports = ''
+
   # General Settings
   $my_class = ''
   $source = ''
