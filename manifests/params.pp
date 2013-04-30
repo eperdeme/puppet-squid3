@@ -81,7 +81,7 @@ class squid3::params {
     default => '/var/log/squid3/squid3.log',
   }
 
-  $port = '42'
+  $port = '3128'
   $protocol = 'tcp'
 
   # General Settings
