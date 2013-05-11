@@ -378,6 +378,15 @@ class squid3 (
     }
   }
 
+  file { 'squid3.incdir':
+    ensure => directory,
+    path => $squid3::include_dir,
+    require => Package[$squid3::package],
+    notify => $squid3::manage_service_autorestart,
+    recurse => true,
+    audit => $squid3::manage_audit,
+  }
+
 
   ### Include custom class if $my_class is set
   if $squid3::my_class {
