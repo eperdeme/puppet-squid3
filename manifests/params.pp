@@ -37,7 +37,7 @@ class squid3::params {
   }
 
   $process_user = $::operatingsystem ? {
-    default => 'squid3',
+    default => 'proxy',
   }
 
   $config_dir = $::operatingsystem ? {
@@ -45,7 +45,7 @@ class squid3::params {
   }
 
   $config_file = $::operatingsystem ? {
-    default => '/etc/squid3/squid3.conf',
+    default => '/etc/squid3/squid.conf',
   }
 
   $config_file_mode = $::operatingsystem ? {
@@ -78,14 +78,14 @@ class squid3::params {
   }
 
   $log_file = $::operatingsystem ? {
-    default => '/var/log/squid3/squid3.log',
+    default => '/var/log/squid3/cache.log',
   }
 
   $port = '3128'
   $protocol = 'tcp'
 
   $acl_safe_ports = ''
-
+  $include_dir = '/etc/squid3/squid-conf.d'
   # General Settings
   $my_class = ''
   $source = ''

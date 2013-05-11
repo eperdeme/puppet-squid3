@@ -40,6 +40,9 @@
 #   An hash of custom options to be used in templates for arbitrary settings.
 #   Can be defined also by the (top scope) variable $squid3_options
 #
+# [*include_dir*]
+# Directory that includes extra configuration files
+#
 # [*service_autorestart*]
 #   Automatically restarts the squid3 service when there is a change in
 #   configuration files. Default: true, Set to false if you don't want to
@@ -241,7 +244,8 @@ class squid3 (
   $log_file            = params_lookup( 'log_file' ),
   $port                = params_lookup( 'port' ),
   $protocol            = params_lookup( 'protocol' ),
-  $acl_safe_ports      = params_lookup( '$acl_safe_ports' )
+  $acl_safe_ports      = params_lookup( '$acl_safe_ports' ),
+  $include_dir         = params_lookup( 'include_dir' )
   ) inherits squid3::params {
 
   $bool_source_dir_purge=any2bool($source_dir_purge)
