@@ -20,9 +20,9 @@ define squid3::http_access (
   $order    = '10',) {
 
   if $absent == false {
-    concat::fragment { "csf-allow-${address}-${comment}":
+    concat::fragment { "${order}_${acl_access}_${name}":
       target  => $target,
-      content => "${address} # ${comment}\n",
+      content => template($template),
       order   => $order,
     }
   }
