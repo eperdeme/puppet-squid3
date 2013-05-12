@@ -19,7 +19,7 @@ define squid3::http_access (
   include concat::setup
 
   if $absent == false {
-    concat::fragment { "${order}_${acl_access}_${name}":
+    concat::fragment { "${acl_access}_${name}":
       target  => $target,
       content => template($template),
       order   => $order,
