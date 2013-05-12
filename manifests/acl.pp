@@ -3,33 +3,17 @@
 # Adds or configures a squid ACL
 #
 # Usage:
-# Define the configuration file of an existing plugin:
-# munin::plugin { 'squid':
-#   source_config => 'example42/munin/squid-config',
-#}
-#
-# Define the configuration file of an existing plugin in-line:
-# munin::plugin { 'nginx':
-#   content_config => "[nginx*]\nenv.url http://localhost/nginx_status";
-#}
-#
-# Provide a custom plugin:
-# munin::plugin { 'redis':
-#   source => 'example42/munin/redis',
-#}
-#
-# Provide a custom plugin with a custom configuration:
-# munin::plugin { 'redis':
-#   source        => 'example42/munin/redis',
-#   source_config => 'example42/munin/redis-conf',
-#}
+#  squid3::acl { 'safe_ports':
+#    acl_type => 'port',
+#    acl_data => '80 443 8080 9418'
+#  }
 #
 
 define squid3::acl ($template = 'squid3/acl.erb', $acl_type = '', $acl_data = '', $enable = true) {
   $ensure = bool2ensure($enable)
 
-  file { "squid_acl_${type}_${name}":
-    path    => "${squid3::include_dir}/${name}",
+  file { "squid_acl_${acl_type}_${name}":
+    path    => "${squid3::include_dir}/${acl_type}_${name}",
     owner   => root,
     group   => root,
     mode    => '0755',
