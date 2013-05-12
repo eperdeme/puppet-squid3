@@ -25,7 +25,7 @@
 #}
 #
 
-define squid3::acl ($template = 'squid3/acl', $type = '',$data = '', $enable = true) {
+define squid3::acl ($template = 'squid3/acl', $type = '', $data = '', $enable = true) {
   $ensure = bool2ensure($enable)
 
   file { "squid_acl_${type}_${name}":
@@ -36,6 +36,6 @@ define squid3::acl ($template = 'squid3/acl', $type = '',$data = '', $enable = t
     ensure  => $ensure,
     require => Package['squid3'],
     notify  => Service['squid3'],
-    content => template("${template}_{$type}"),
+    content => template("${template}"),
   }
 }
