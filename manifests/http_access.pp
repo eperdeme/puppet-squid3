@@ -11,10 +11,10 @@
 
 define squid3::http_access (
   $absent     = false,
-  $target     = "${squid3::include_dir}/${acl_type}_${name}",
+  $acl_access = '',
+  $target     = "${squid3::include_dir}/${order}_${acl_access}_${name}",
   $template   = 'squid3/http_access.erb',
   $acl_data   = '',
-  $acl_access = '',
   $order      = '10',) {
   include concat::setup
 
