@@ -11,7 +11,7 @@
 
 define squid3::http_access (
   $absent     = false,
-  $target     = '${squid3::include_dir}/${acl_type}_${name}',
+  $target     = "${squid3::include_dir}/${acl_type}_${name}",
   $template   = 'squid3/http_access.erb',
   $acl_data   = '',
   $acl_access = '',
