@@ -10,8 +10,6 @@
 #
 
 define squid3::http_access (
-  $address,
-  $comment  = $name,
   $absent   = false,
   $target   = '${squid3::include_dir}/${acl_type}_${name}',
   $template = 'squid3/http_access.erb',
