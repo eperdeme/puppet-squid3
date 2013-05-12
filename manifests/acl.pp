@@ -25,7 +25,7 @@
 #}
 #
 
-define squid3::acl ($template = 'squid3/acl.erb', $type = '', $data = '', $enable = true) {
+define squid3::acl ($template = 'squid3/acl.erb', $acl_type = '', $acl_data = '', $enable = true) {
   $ensure = bool2ensure($enable)
 
   file { "squid_acl_${type}_${name}":
