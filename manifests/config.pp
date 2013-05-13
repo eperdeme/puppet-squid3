@@ -1,7 +1,7 @@
 define squid3::config ($order = '', $content = '', $target = '') {
   include concat::setup
 
-  if !defined(Concat["${$target}"]) {
+  if !defined(Concat["${target}"]) {
     concat { "${$target}":
 
     }
