@@ -17,7 +17,7 @@ define squid3::acl (
   $order    = '10',
   $enable   = true) {
   squid3::config { "${acl_type}_${name}":
-    content => "acl ${name} ${$acl_type} ${acl_data}",
+    content => "acl ${name} ${$acl_type} ${acl_data}\n",
     order   => "$order",
     target  => "$target"
   }
