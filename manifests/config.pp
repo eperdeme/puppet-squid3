@@ -7,7 +7,7 @@ define squid3::config ($order = '', $content = '', $target = '') {
     }
   }
 
-  concat::fragment { "${content}${target}":
+  concat::fragment { "${name}":
     target  => $target,
     content => $content,
     order   => $order,
