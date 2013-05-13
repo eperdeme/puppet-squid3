@@ -9,17 +9,16 @@
 #  }
 #
 
-define squid3::acl ($template = 'squid3/acl.erb', $acl_type = '', $acl_data = '', $enable = true) {
-  $ensure = bool2ensure($enable)
-
-  file { "squid_acl_${acl_type}_${name}":
-    path    => "${squid3::include_dir}/${acl_type}_${name}",
-    owner   => root,
-    group   => root,
-    mode    => '0755',
-    ensure  => $ensure,
-    require => Package['squid3'],
-    notify  => Service['squid3'],
-    content => template("${template}"),
+define squid3::acl (
+  $absent   = false,
+  $target   = "${squid3::include_dir}/acl.conf",
+  $acl_type = '',
+  $acl_data = '',
+  $order    = '10',
+  $enable   = true) {
+  squid3::config { "${acl_type}_${name}":
+    content => "acl ${name} ${$acl_type} ${acl_data}",
+    order   => "$order",
+    target  => "$target"
   }
 }

@@ -1,28 +1,25 @@
-# Define: squid3::acl
+# Define: squid3::http_access
 #
-# Adds or configures a squid ACL
+# Adds or configures a squid http_access rules
 #
 # Usage:
-#  squid3::acl { 'safe_ports':
-#    acl_type => 'port',
-#    acl_data => '80 443 8080 9418'
+#  squid3::http_access { 'allow_zen_hosts':
+#    order      => '10',
+#    acl_access => 'allow',
+#    acl_data   => 'zen_hosts'
 #  }
 #
 
 define squid3::http_access (
   $absent     = false,
+  $target     = "${squid3::include_dir}/http_access.conf",
   $acl_access = '',
-  $target     = "${squid3::include_dir}/${order}_${acl_access}_${name}",
-  $template   = 'squid3/http_access.erb',
   $acl_data   = '',
-  $order      = '10',) {
-  include concat::setup
-
-  if $absent == false {
-    concat::fragment { "${acl_access}_${name}":
-      target  => $target,
-      content => template($template),
-      order   => $order,
-    }
+  $order      = '10',
+  $enable     = true) {
+  squid3::config { "${acl_access}_${name}":
+    content => "http_access ${acl_access} ${acl_data}",
+    order   => "$order",
+    target  => "$target"
   }
 }
