@@ -2,11 +2,11 @@
 
 This is a Puppet module for squid3 based on the second generation layout ("NextGen") of Example42 Puppet Modules.
 
-Made by Alessandro Franceschi / Lab42
+Made by Nathan Flynn / Zen Internet LTD
 
 Official site: http://www.example42.com
 
-Official git repository: http://github.com/example42/puppet-squid3
+Official git repository: http://github.com/zennoc/puppet-squid3
 
 Released under the terms of Apache 2 License.
 
@@ -51,6 +51,21 @@ For detailed info about the logic and usage patterns of Example42 modules check 
           noops => true
         }
 
+* Adds or configures a squid ACL
+
+ Usage:
+  squid3::acl { 'safe_ports':
+    acl_type => 'port',
+    acl_data => '80 443 8080 9418'
+  }
+
+* Adds or configures a squid http_access rules
+ Usage:
+  squid3::http_access { 'allow_zen_hosts':
+    order      => '10',
+    acl_access => 'allow',
+    acl_data   => 'zen_hosts'
+  }
 
 ## USAGE - Overrides and Customizations
 * Use custom sources for main config file 
