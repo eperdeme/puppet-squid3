@@ -53,19 +53,20 @@ For detailed info about the logic and usage patterns of Example42 modules check 
 
 * Adds or configures a squid ACL
 
- Usage:
-  squid3::acl { 'safe_ports':
-    acl_type => 'port',
-    acl_data => '80 443 8080 9418'
-  }
+		Usage:
+		  squid3::acl { 'safe_ports':
+		    acl_type => 'port',
+		    acl_data => '80 443 8080 9418'
+		  }
 
 * Adds or configures a squid http_access rules
- Usage:
-  squid3::http_access { 'allow_zen_hosts':
-    order      => '10',
-    acl_access => 'allow',
-    acl_data   => 'zen_hosts'
-  }
+
+		 Usage:
+		  squid3::http_access { 'allow_zen_hosts':
+		    order      => '10',
+		    acl_access => 'allow',
+		    acl_data   => 'zen_hosts'
+		  }
 
 ## USAGE - Overrides and Customizations
 * Use custom sources for main config file 
