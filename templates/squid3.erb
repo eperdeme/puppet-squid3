@@ -4,3 +4,6 @@ http_port <%= scope.lookupvar('squid3::port') %>
 
 # Include directory for puppet managed configuration files.
 include <%= scope.lookupvar('squid3::include_dir') %>/*
+
+
+access_log syslog squid
