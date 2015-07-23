@@ -13,78 +13,43 @@
 # It may be imported or inherited by other classes
 #
 class squid3::params {
+  # ## Application related parameters
 
-  ### Application related parameters
 
-  $package = $::operatingsystem ? {
-    default => 'squid3',
-  }
+  case $::osfamily {
+    'RedHat'           : {
+      if $::operatingsystemmajrelease < 6 {
+        $package_name = 'squid3'
+      } else {
+        $package_name = 'squid'
+      }
+      $service_name = 'squid'
+      $config_file = '/etc/squid/squid.conf'
+      $include_dir = '/etc/squid/squid-conf.d'
 
-  $service = $::operatingsystem ? {
-    default => 'squid3',
-  }
+      $log_directory = '/var/log/squid'
+      $coredump_dir = '/var/spool/squid'
+    }
+    'Debian', 'Ubuntu' : {
+      $package_name = 'squid3'
+      $service_name = 'squid3'
+      $config_file = '/etc/squid3/squid.conf'
+      $include_dir = '/etc/squid3/squid-conf.d'
 
-  $service_status = $::operatingsystem ? {
-    default => true,
-  }
-
-  $process = $::operatingsystem ? {
-    default => 'squid3',
-  }
-
-  $process_args = $::operatingsystem ? {
-    default => '',
-  }
-
-  $process_user = $::operatingsystem ? {
-    default => 'proxy',
-  }
-
-  $config_dir = $::operatingsystem ? {
-    default => '/etc/squid3',
-  }
-
-  $config_file = $::operatingsystem ? {
-    default => '/etc/squid3/squid.conf',
-  }
-
-  $config_file_mode = $::operatingsystem ? {
-    default => '0644',
-  }
-
-  $config_file_owner = $::operatingsystem ? {
-    default => 'root',
-  }
-
-  $config_file_group = $::operatingsystem ? {
-    default => 'root',
-  }
-
-  $config_file_init = $::operatingsystem ? {
-    /(?i:Debian|Ubuntu|Mint)/ => '/etc/default/squid3',
-    default                   => '/etc/sysconfig/squid3',
-  }
-
-  $pid_file = $::operatingsystem ? {
-    default => '/var/run/squid3.pid',
-  }
-
-  $data_dir = $::operatingsystem ? {
-    default => '/etc/squid3',
-  }
-
-  $log_dir = $::operatingsystem ? {
-    default => '/var/log/squid3',
-  }
-
-  $log_file = $::operatingsystem ? {
-    default => '/var/log/squid3/cache.log',
+      $log_directory = '/var/log/squid3'
+      $coredump_dir = '/var/spool/squid3'
+    }
+    default            : {
+      $package_name = 'squid'
+      $service_name = 'squid'
+      $config_file = '/etc/squid/squid.conf'
+      $log_directory = '/var/log/squid'
+      $coredump_dir = '/var/spool/squid'
+    }
   }
 
   $port = '3128'
   $protocol = 'tcp'
-
-  $include_dir = '/etc/squid3/squid-conf.d'
   # General Settings
   $my_class = ''
   $source = ''
@@ -97,19 +62,5 @@ class squid3::params {
   $absent = false
   $disable = false
   $disableboot = false
-
-  ### General module variables that can have a site or per module default
-  $monitor = false
-  $monitor_tool = ''
-  $monitor_target = $::ipaddress
-  $firewall = false
-  $firewall_tool = ''
-  $firewall_src = '0.0.0.0/0'
-  $firewall_dst = $::ipaddress
-  $puppi = false
-  $puppi_helper = 'standard'
-  $debug = false
-  $audit_only = false
-  $noops = false
 
 }

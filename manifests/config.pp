@@ -9,7 +9,7 @@ define squid3::config ($order = '', $content = '', $target = '') {
     target  => $target,
     content => $content,
     order   => $order,
-    notify  => Service['squid3'],
-    require => Package['squid3']
+    notify  => Service[$squid3::service_name],
+    require => Package[$squid3::package_name]
   }
 }
