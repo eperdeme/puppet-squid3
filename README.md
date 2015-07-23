@@ -36,24 +36,25 @@ Official git repository: http://github.com/eperdeme/puppet-squid3
 		  
 * Populate the data from hiera.
 
-hiera.yaml
----
-squid.acl: 
-  safe_ports: 
-    acl_data: "80 443"
-    acl_type: port
-  wh_hosts: 
-    acl_data: 10.0.0.0/8
-    acl_type: src
-squid.http_access: 
-  our_hosts: 
-    acl_access: allow
-    acl_data: our_hosts
-    order: 10
-
+```
+	squid.acl: 
+	  safe_ports: 
+	    acl_data: "80 443"
+	    acl_type: port
+	  wh_hosts: 
+	    acl_data: 10.0.0.0/8
+	    acl_type: src
+	squid.http_access: 
+	  our_hosts: 
+	    acl_access: allow
+	    acl_data: our_hosts
+	    order: 10
+```
+```
 create_resources(squid3::acl, $acl_hash)
 create_resources(squid3::http_access, $http_access_hash)
-  
+
+``` 
 * Use custom template for main config file. Note that template and source arguments are alternative. 
 
         class { 'squid3':
