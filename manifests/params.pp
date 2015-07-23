@@ -18,7 +18,7 @@ class squid3::params {
 
   case $::osfamily {
     'RedHat'           : {
-      if $::operatingsystemmajrelease < 6 {
+      if versioncmp($::operatingsystemrelease, '6') < 0 {
         $package_name = 'squid3'
       } else {
         $package_name = 'squid'
@@ -55,7 +55,7 @@ class squid3::params {
   $source = ''
   $source_dir = ''
   $source_dir_purge = false
-  $template = ''
+  $template = 'squid3/squid3.erb'
   $options = ''
   $service_autorestart = true
   $version = 'present'

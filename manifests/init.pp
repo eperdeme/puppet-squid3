@@ -11,8 +11,10 @@
 #
 # See README for usage patterns.
 #
-class squid3 (String $include_dir = ::squid3::params::include_dir, String $service_name = ::squid3::params::service_name,) inherits 
-squid3::params {
+class squid3 (
+  String $include_dir          = $::squid3::params::include_dir,
+  String $service_name         = $::squid3::params::service_name,
+  String $config_file_template = $::squid3::params::template,) inherits squid3::params {
   # ## Managed resources
   package { $package_name: ensure => $version, }
 
@@ -27,6 +29,7 @@ squid3::params {
     path    => $config_file,
     require => Package[$package_name],
     notify  => Service[$service_name],
+    content => $config_file_template,
   }
 
   file { $include_dir:
