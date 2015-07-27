@@ -29,7 +29,7 @@ class squid3 (
     path    => $config_file,
     require => Package[$package_name],
     notify  => Service[$service_name],
-    content => $config_file_template,
+    content => template($config_file_template),
   }
 
   file { $include_dir:
