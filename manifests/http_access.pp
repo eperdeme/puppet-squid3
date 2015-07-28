@@ -17,7 +17,7 @@ define squid3::http_access (
   $acl_data   = '',
   $order      = '10',
   $enable     = true) {
-  squid3::config { "${acl_access}_${name}":
+  squid3::concat { "${acl_access}_${name}":
     content => "http_access ${acl_access} ${acl_data}\n",
     order   => "$order",
     target  => "$target"

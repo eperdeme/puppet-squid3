@@ -48,15 +48,11 @@ class squid3::params {
     }
   }
 
-  $port = '3128'
-  $protocol = 'tcp'
   # General Settings
-  $my_class = ''
   $source = ''
   $source_dir = ''
   $source_dir_purge = false
   $template = 'squid3/squid3.erb'
-  $options = ''
   $service_autorestart = true
   $version = 'present'
   $absent = false

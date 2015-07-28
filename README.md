@@ -17,6 +17,13 @@ Official git repository: http://github.com/eperdeme/puppet-squid3
           version => '1.0.1',
         }
 
+* Add squid config item
+
+		Usage:
+		  squid3::config { 'listen on port 3128':
+		    cfg_data   => 'http_port 3128'
+		  }
+
 * Adds or configures a squid ACL
 
 		Usage:
