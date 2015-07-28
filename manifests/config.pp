@@ -15,7 +15,7 @@ define squid3::config (
   $cfg_data = '',
   $order    = '10',
   $enable   = true) {
-  squid3::concat { "${acl_access}_${name}":
+  squid3::ccat { "${name}":
     content => "$cfg_data\n",
     order   => "$order",
     target  => "$target"

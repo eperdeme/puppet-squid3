@@ -1,4 +1,4 @@
-define squid3::concat ($order = '', $content = '', $target = '') {
+define squid3::ccat ($order = '', $content = '', $target = '') {
   include concat::setup
 
   if !defined(Concat["${target}"]) {
